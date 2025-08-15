@@ -2,32 +2,28 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Generate synthetic business data
-data = {
-    "Product": ["A", "B", "C", "D", "E"],
-    "Sales": [120, 150, 90, 200, 170]
-}
-df = pd.DataFrame(data)
-
-# Set seaborn style
+# Set style
 sns.set_style("whitegrid")
 sns.set_context("talk")
 
-# Create a figure with exact size for 512x512 pixels at dpi=100
+# Generate synthetic business data
+data = {
+    "Product": ["A", "B", "C", "D", "E"],
+    "Sales": [120, 95, 140, 80, 110]
+}
+df = pd.DataFrame(data)
+
+# Create figure with exact size (512x512 at dpi=100 → 5.12 inches)
 plt.figure(figsize=(5.12, 5.12), dpi=100)
 
-# Create barplot
-sns.barplot(data=df, x="Product", y="Sales", palette="viridis")
+# Barplot (with hue set to avoid warning)
+sns.barplot(data=df, x="Product", y="Sales", hue="Product", legend=False, palette="viridis")
 
-# Add titles and labels
-plt.title("Product Sales Performance", fontsize=16)
-plt.xlabel("Product")
-plt.ylabel("Sales Units")
+# Titles and labels
+plt.title("Quarterly Sales Performance by Product", fontsize=16, pad=15)
+plt.xlabel("Product", fontsize=14)
+plt.ylabel("Sales (Units)", fontsize=14)
 
-# Save chart as 512x512 PNG
-output_path = "/mnt/data/chart.png"
-plt.savefig(output_path, dpi=100, bbox_inches="tight")
-
+# Save chart in repo folder
+plt.savefig("chart.png", dpi=100, bbox_inches="tight")
 plt.close()
-
-output_path

@@ -16,14 +16,13 @@ df = pd.DataFrame(data)
 # Create figure with exact size (512x512 at dpi=100 → 5.12 inches)
 plt.figure(figsize=(5.12, 5.12), dpi=100)
 
-# Barplot (with hue set to avoid warning)
+# Barplot (clean, no title)
 sns.barplot(data=df, x="Product", y="Sales", hue="Product", legend=False, palette="viridis")
 
-# Titles and labels
-plt.title("Quarterly Sales Performance by Product", fontsize=16, pad=15)
-plt.xlabel("Product", fontsize=14)
-plt.ylabel("Sales (Units)", fontsize=14)
+# Axis labels (optional — remove if you want totally clean)
+plt.xlabel("Product", fontsize=12)
+plt.ylabel("Sales (Units)", fontsize=12)
 
-# Save chart in repo folder
-plt.savefig("chart.png", dpi=100, bbox_inches="tight")
+# Save chart (no extra borders, exactly 512x512)
+plt.savefig("chart.png", dpi=100, bbox_inches=None, pad_inches=0)
 plt.close()
